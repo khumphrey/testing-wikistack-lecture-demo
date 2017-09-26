@@ -1,9 +1,15 @@
 const expect = require('chai').expect
 const { Hippo } = require('./db')
+const sinon = require('sinon')
+
+// talk about it and show it passing without assert clause -- needs error thrown to know it shouldn't pass
+
 
 describe('Hippo model tests', function () {
 	before(function (done) {
+		// consider just `return` statement
 		Hippo.sync({force: true})
+			// .then(()=>console.log('heyyyy'))
 			.then(() => done())
 			.catch(done)
 	})
@@ -28,13 +34,14 @@ describe('Hippo model tests', function () {
 	})
 
 	describe('class methods', function () {
-		describe('find plumpest', function () {
+		describe('find plumpest', function (done) {
 			it('takes no arguments and returns an array', function () {
 				Hippo.findPlumpest()
 					.then(foundHippos => {
 						expect(foundHippos).to.be.a('array')
-						
+						done()
 					})
+					.catch(done)
 			})
 		})
 	})

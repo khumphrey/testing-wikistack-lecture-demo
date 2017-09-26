@@ -29,7 +29,7 @@ Hippo.findPlumpest = function () {
 }
 
 Hippo.prototype.move = function () {
-	if (this.sleepyFactor < Math.random()) return "I should get going"
+	if (this.sleepyFactor < .5) return "I should get going"
 	else return "Maybe tomorrow"
 }
 
